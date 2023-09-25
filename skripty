@@ -68,3 +68,14 @@ MAXX(
     -- zbavene vsech filtru
     MAXX(ALL(data),data[rok])),
 data[teplota])
+
+___________________________________________________________
+
+08 maximaln teplota predchozi rok = 
+
+MAXX(
+    FILTER(
+        ALL(data),
+    data[rok] = MAX(data[rok]) - 1
+    && data[lokalita] IN VALUES(data[lokalita])),
+data[teplota])

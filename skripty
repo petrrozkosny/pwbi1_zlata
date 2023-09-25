@@ -93,3 +93,10 @@ MAXX(
         ALL(data),
     data[lokalita] IN VALUES(data[lokalita])),
 data[teplota]),"TOMATO")
+
+___________________________________________________________
+
+10 nazev grafu = 
+"Vývoj maximální teploty v lokalitách: "&
+CONCATENATEX(
+    DISTINCT(data[lokalita]),data[lokalita],", ")

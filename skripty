@@ -20,3 +20,16 @@ SUMX(
         -- cislo daneho roku, od ktereho odecitame 1
     data[rok] = MAX(data[rok])-1),
 data[srazky])
+____________________________________________________________________-
+
+02 pocet vyskytu teplota nad 30 = 
+
+-- pocitame hodnoty ve sloupci datum tabulky vracene funkci FILTER()
+COUNTX(
+    -- funkce FILTER() vraci tabulku filtrovanou pres sloupce rok a teplota
+    FILTER(
+        -- tabulka, jejiz kopii delame, respektujeme filtry nad rokem
+        data,
+    -- nove nastaveny filtr
+    data[teplota] >30),
+data[datum])

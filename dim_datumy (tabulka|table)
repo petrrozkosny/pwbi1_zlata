@@ -1,0 +1,12 @@
+dim_datumy = 
+ADDCOLUMNS(
+CALENDAR(
+    DATE(2000,01,01),
+    TODAY()),
+"rok",YEAR([Date]),
+"year",YEAR([Date]),
+"kvartal",QUARTER([Date]),
+"quarter",QUARTER([Date]),
+"mesic",MONTH([Date]),
+"month",MONTH([Date])
+)

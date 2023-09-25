@@ -40,3 +40,16 @@ _______________________________________________________________________________
 MAXX(
     FILTER(data, data[rok] = 2023),
 data[teplota])
+
+__________________________________________________________________________
+
+05 podil dnu se srazkami = 
+
+-- pocet dnu srazky > 0
+COUNTX(
+    FILTER(data,
+    data[srazky] > 0),
+data[datum])
+/
+-- pocet dnu kdy srazky nejsou prazdne
+COUNT(data[srazky])

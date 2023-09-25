@@ -33,3 +33,10 @@ COUNTX(
     -- nove nastaveny filtr
     data[teplota] >30),
 data[datum])
+
+_______________________________________________________________________________
+
+03 maximalni teplota rok 2023 = 
+MAXX(
+    FILTER(data, data[rok] = 2023),
+data[teplota])

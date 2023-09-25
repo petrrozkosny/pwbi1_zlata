@@ -1,0 +1,22 @@
+01 suma srazek mezirocne = 
+
+
+-- suma srazek v danem roce
+-- suma srazek z tabulky data filtrovane vizualem pres sloupec rok
+SUM(data[srazky])
+-- mínus
+-
+-- suma srazek v predchozim roce
+--krok3: Scitame sloupec srazky tabulky vracene funkci FILTER()
+SUMX(
+    --krok2: Funkce FILTER() nastavuje filtr na sloupec tabulky
+    -- vracene funkci ALL()
+    FILTER(
+        --krok1: Funkce ALL() vytvari kopii tabulky data zbavenou
+        -- vsech filtru
+        ALL(data),
+        -- Z originalni tabulky data stale filtrovane vizualem
+        -- dopocitavame maximalni hodnotu ze sloupce rok, coz je
+        -- cislo daneho roku, od ktereho odecitame 1
+    data[rok] = MAX(data[rok])-1),
+data[srazky])

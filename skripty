@@ -53,3 +53,18 @@ data[datum])
 /
 -- pocet dnu kdy srazky nejsou prazdne
 COUNT(data[srazky])
+
+_________________________________________________________________________
+
+06 maximalni teplota posledni rok = 
+
+-- maximum ze sloupce teplota pro danou lokalitu
+-- za maximalni rok napric lokalitami
+
+MAXX(
+    FILTER(data,
+    data[rok] = 
+    -- maximalni hodnota ze sloupce rok tabulky
+    -- zbavene vsech filtru
+    MAXX(ALL(data),data[rok])),
+data[teplota])

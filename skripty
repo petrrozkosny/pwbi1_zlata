@@ -79,3 +79,17 @@ MAXX(
     data[rok] = MAX(data[rok]) - 1
     && data[lokalita] IN VALUES(data[lokalita])),
 data[teplota])
+
+______________________________________________________
+
+09 pf maximalni teplota = 
+IF(
+-- maximalni teplota v danem roce a dane lokalite
+MAX(data[teplota])
+= 
+-- maximalni teplota ve vsech letech a dane lokalite
+MAXX(
+    FILTER(
+        ALL(data),
+    data[lokalita] IN VALUES(data[lokalita])),
+data[teplota]),"TOMATO")

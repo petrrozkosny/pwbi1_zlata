@@ -128,5 +128,44 @@ data[lokalita] = SELECTEDVALUE(data[lokalita])
 data[srazky])
 )
 
+______________________________________________________________________
+
+12 suma srazek predchozi rok = 
+IF(
+    -- ptame se na uzivatelem vybranou hodnotu ve sloupci typ_obdobi
+    -- testujeme, jestli se vybrana hodnota rovna "prubezne"
+    SELECTEDVALUE(obdobi[typ_obdobi]) = "prubezne",
+-- POKUD SE VYBRANÁ HODNOTA ROVNA "PRUBEZNE"
+-- v lokalite vybrane uzivatelem, mesici vybranem vizualem a roce, ktery predchazi
+-- roku vybr. uzivatelem
+
+SUMX(
+    FILTER(
+        ALL(data),
+    data[lokalita] = SELECTEDVALUE(data[lokalita])
+    && data[mesic] = SELECTEDVALUE(data[mesic])
+    && data[rok] = SELECTEDVALUE(data[rok]) - 1),
+data[srazky]),
+-- POKUD SE VYBRANA HODNOTA NEROVNA "PRUBEZNE"
+-- v lokalite vybranem uzivatelem, za dany a predchozi mesice, v roce, ktery predchazi
+-- roku vybr. uzivatelem
+-- tj. ytd
+SUMX(
+-- Funkce FILTER() nastavuje filtry na sloupce tabulky vracene funkci ALL()
+FILTER(
+    -- Funkce ALL() vytvari kopii tabulky data zbavenou vsech filtru
+    ALL(data),
+    -- PODMINKY
+-- Pokud bychom umoznili vicenasobny vyber a ten chteli zohlednit, podminka by mela byt
+-- IN VALUES(tabulka[sloupec])
+data[lokalita] = SELECTEDVALUE(data[lokalita])
+&& data[rok] = SELECTEDVALUE(data[rok]) - 1
+&& data[mesic] <= SELECTEDVALUE(data[mesic])),
+-- KONEC POMINEK
+-- sloupec tabulky vracene funkci FILTER(), ktery funkce SUMX() agreguje
+data[srazky])
+)
+
+
 
 

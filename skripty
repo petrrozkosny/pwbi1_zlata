@@ -166,6 +166,13 @@ data[lokalita] = SELECTEDVALUE(data[lokalita])
 data[srazky])
 )
 
+_________________________________________________________________
+
+13 upozorneni = 
+
+IF(HASONEFILTER(data[lokalita]),"","vyberte jedinou lokalitu ")
+& IF(HASONEFILTER(data[rok]),"", "Vybete jediny rok ")
+& IF(HASONEFILTER(obdobi[typ_obdobi]),"", "Vyberte jediny typ obdobi")
 
 
 

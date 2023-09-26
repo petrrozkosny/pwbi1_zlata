@@ -174,5 +174,12 @@ IF(HASONEFILTER(data[lokalita]),"","vyberte jedinou lokalitu ")
 & IF(HASONEFILTER(data[rok]),"", "Vybete jediny rok ")
 & IF(HASONEFILTER(obdobi[typ_obdobi]),"", "Vyberte jediny typ obdobi")
 
+__________________________________________________________________
 
+14 text tlacitka = 
+
+IF(
+    HASONEFILTER(data[rok]),
+    "Přejít na detail roku "&SELECTEDVALUE(data[rok]),
+    "Kliknutím do grafu vyberte rok")
 

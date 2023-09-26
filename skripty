@@ -100,3 +100,33 @@ ___________________________________________________________
 "Vývoj maximální teploty v lokalitách: "&
 CONCATENATEX(
     DISTINCT(data[lokalita]),data[lokalita],", ")
+
+___________________________________________________________
+
+11 suma srazek vybrany rok = 
+IF(
+    -- ptame se na uzivatelem vybranou hodnotu ve sloupci typ_obdobi
+    -- testujeme, jestli se vybrana hodnota rovna "prubezne"
+    SELECTEDVALUE(obdobi[typ_obdobi]) = "prubezne",
+-- POKUD SE VYBRANÁ HODNOTA ROVNA "PRUBEZNE"
+-- v lokalite a roce vybranem uzivatelem, mesici vybranem vizualem
+SUM(data[srazky]),
+-- POKUD SE VYBRANA HODNOTA NEROVNA "PRUBEZNE"
+-- v lokalite a roce vybranem uzivatelem, za dany a predchozi mesice
+-- tj. ytd
+SUMX(
+-- Funkce FILTER() nastavuje filtry na sloupce tabulky vracene funkci ALL()
+FILTER(
+    -- Funkce ALL() vytvari kopii tabulky data zbavenou vsech filtru
+    ALL(data),
+    -- PODMINKY
+data[lokalita] = SELECTEDVALUE(data[lokalita])
+&& data[rok] = SELECTEDVALUE(data[rok])
+&& data[mesic] <= SELECTEDVALUE(data[mesic])),
+-- KONEC POMINEK
+-- sloupec tabulky vracene funkci FILTER(), ktery funkce SUMX() agreguje
+data[srazky])
+)
+
+
+
